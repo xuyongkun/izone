@@ -41,7 +41,8 @@ urlpatterns = [
     path('robots.txt', robots, name='robots'), # robots
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'), # 网站地图
     path('feed/', AllArticleRssFeed(), name='rss'),   # rss订阅
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # 加入这个才能显示media文件
+    path('wenku/', include('wenku.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # 加入这个才能显示media文件
 
 if settings.API_FLAG:
     from api.urls import router

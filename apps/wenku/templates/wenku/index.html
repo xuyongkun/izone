@@ -1,0 +1,128 @@
+{% extends "wenku/base.html" %}
+{% load static %}
+{% load humanize %}
+{% load blog_tags %}
+
+{% block head_title %}文库下载{% endblock %}
+
+{% block metas %}
+    <meta name="description" content="{{ site_description }}">
+    <meta name="keywords" content="{{ site_keywords }}">
+    <!--站长验证-->
+    <meta name="baidu-site-verification" content="YCoD4WTuGF" />
+    <meta name="360-site-verification" content="5492df7d63c9ceb707eff60d6cf699e1" />
+    <meta name="sogou_site_verification" content="czcxwE2sdj"/>
+    <meta name="shenma-site-verification" content="169f4055c7f0323f020d0d238a2bec48_1523704037">
+    <link rel="stylesheet" type="text/css" href="{% static 'wenku/css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'wenku/css/wenku.css'%}">
+{% endblock %}
+
+{% block base_content %}
+    <div id="top">
+        <div id="content">
+            <div id="lg">
+                <img src="http://s1.bdstatic.com/r/www/cache/mid/static/xueshu/img/logo_4b1971d.gif"
+                     width="270px" height="129px">
+            </div>
+            <label for="tip">请将文档下载地址复制到搜索框中...:</label>
+            <form id="input-button"  method="post" action="{% url 'wenku:download_document' %}" target="download-frame">
+                {% csrf_token %}    <!--用于防止恶意攻击使用-->
+                <div class="input-group">
+                    <input type="text" class="form-control  rounded-0 f-15" name="document_url" required autofocus  oninput="setCustomValidity('')"
+                           oninvalid="setCustomValidity('请输入正确的网址')" placeholder="请输入文件网址" aria-label="提示" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" form="input-button" type="submit" id="button-down" >下载文档</button>
+                    </div>
+                    <input type="text" id="browser_type" name="browser_type" style="display:none" />
+                </div>
+
+            </form>
+            <iframe id="download-frame" name="download-frame" style="display:none"></iframe>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block wenku_down %}
+    <script src="{% static 'wenku/js/jquery.min.js'%}"></script>
+    <script src="{% static 'wenku/js/ios-parallax.js'%}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //首先判断浏览器类型
+            var et = checkBrowserVersion();
+            //浏览器类型赋值到Form中
+            document.getElementById('browser_type').value = et;
+
+            var iframe = document.getElementById("download-frame");
+            if (iframe.attachEvent) {
+                iframe.attachEvent("onload", function () {
+                    //iframe内容加载完成后
+                    var ht = $(iframe.contentWindow.document.body).html();
+                    var pt = $.parseHTML(ht)[0].innerHTML;
+                    var jt = $.parseJSON(pt).url;           //转换成json
+                    var url = jt.replace(/&amp;/g, '&');    //将所有被转义成'&amp;'的字符还原成&
+                    window.open(url);
+                })
+            } else {
+                iframe.onload = function () {
+                    //判断浏览器
+                    var ht = $(iframe.contentWindow.document.body).html();
+                    console.log(ht);
+                    console.log('转换成json');
+                    var jt = $.parseJSON(ht).url;           //转换成json
+                    var url = jt.replace(/&amp;/g, '&');    //将所有被转义成'&amp;'的字符还原成&
+                    //打开对话框，根据获得的url下载文档
+                    // window.open(url);
+                    console.log(url);
+                    window.location.href = url;
+                }
+            }
+
+
+          /*
+             * 描述：判断浏览器信息
+             * 日期：2018.9.29
+             * 版本：V1.0
+             */
+            // 判断当前浏览类型
+            function checkBrowserVersion() {
+              var u = window.navigator.userAgent; //取得浏览器的userAgent字符串alert(u);
+              var O = {
+                isOpera:u.indexOf("OPR") > -1,
+                isFF:u.indexOf("Firefox") > -1,
+                isQQBrowser:u.indexOf("QQBrowser") > -1,
+                isEdge:u.indexOf("Edge") > -1,
+                isChrome:u.indexOf("Chrome") > -1,
+                isSafari:u.indexOf("Safari") > -1,
+                isIE:u.indexOf("Trident") > -1,//ie
+                ie11lt:u.indexOf("compatible") > -1 && u.indexOf("MSIE") > -1,//ie11-
+                ie11gt:u.indexOf("rv:11.0") > -1,//ie11
+                isMobile: u.indexOf("Mobile") > -1,
+                isAndroid:u.indexOf("Android") > -1,
+                isPad:u.indexOf("iPad") > -1,
+                isIphone:u.indexOf("iPhone") > -1,
+                weiXin: u.indexOf('MicroMessenger') != -1 //是否为微信浏览器
+
+              }//校验浏览器类型
+              var b = "";//版本
+              if(O.isOpera) { b = "Opera";}
+              else if (O.isFF) {b = "Firefox";}
+              else if (O.isQQBrowser) {b = "QQBrowser";}
+              else if (O.isEdge) {b = "Edge";}
+              else if (O.isMobile && O.isAndroid) {b = "Android";}
+              else if (O.isMobile && O.isPad) {b = "iPad";}
+              else if (O.isMobile && O.isIphone) {b = "iPhone";}
+              else if (O.isChrome) { b = "Chrome";}
+              else if (O.isSafari) { b = "Safari";}
+              else if (O.isEdge) {b = "Edge"}
+              else if (O.isIE && O.ie11gt) { b = "IE11";}
+              else if (O.isIE && O.ie11lt) {
+                new RegExp("MSIE (\\d+\\.\\d+);").test(u);
+                b = parseFloat(RegExp["$1"]);
+              }
+              return b;
+            }
+        })
+    </script>
+
+{% endblock %}
