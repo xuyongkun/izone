@@ -24,31 +24,29 @@
                 <img src="http://s1.bdstatic.com/r/www/cache/mid/static/xueshu/img/logo_4b1971d.gif"
                      width="270px" height="129px">
             </div>
-
             <div class="col-xs-10 col-md-8 col-center-block">
-                <form class="form-horizontal" role="search" method="post" id="download-form" action="{% url 'wenku:download_document' %}">
+                <form class="form-horizontal" role="search" method="post" id="download-form" action="{% url 'wenku:download_document' %}" target="download-frame">
                     {% csrf_token %}
                     <div class="input-group">
                         <div id="tx-info">
                             <p class="text-left">请将文库网址复制到下面的输入框中</p>
                         </div>
-
                         <input type="search" name="document_url" class="form-control rounded-0" placeholder="请输入文件网址" autocomplete="off" required=True
                             oninvalid="setCustomValidity('请输入正确的网址')">
                         <div class="input-group-btn">
                             <button class="btn btn-info rounded-0" type="submit"><i class="fa fa-download"></i>下载文档</button>
                         </div>
+                        <input type="text" id="browser_type" name="browser_type" style="display:none" />
                     </div>
                 </form>
-
+                <iframe id="download-frame" name="download-frame" style="display:none"></iframe>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block wenku_down %}
-    <script src="{% static 'wenku/js/jquery.min.js' %}"></script>
+    <script src="{% static 'wenku/js/jquery.min.js'%}"></script>
     <script src="{% static 'wenku/js/ios-parallax.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -58,7 +56,9 @@
             document.getElementById('browser_type').value = et;
 
             var iframe = document.getElementById("download-frame");
+
             if (iframe.attachEvent) {
+                alert('1');
                 iframe.attachEvent("onload", function () {
                     //iframe内容加载完成后
                     var ht = $(iframe.contentWindow.document.body).html();
@@ -68,6 +68,7 @@
                     window.open(url);
                 })
             } else {
+                alert('0');
                 iframe.onload = function () {
                     //判断浏览器
                     var ht = $(iframe.contentWindow.document.body).html();
