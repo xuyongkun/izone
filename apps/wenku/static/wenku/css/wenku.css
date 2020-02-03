@@ -1,0 +1,64 @@
+#top {
+  position:fixed ;
+  top:0;
+  width:100%;
+  z-index:0;
+  height:100%;
+}
+
+#content {
+      width: 100%;
+      transform: translateY(-50%);
+      top: 50%;
+      position: relative;
+      text-align: center;
+}
+/*页面上方logo*/
+#lg {
+    position: relative;
+    margin-top: 5%;
+    width: 100%;
+    text-align: center;
+}
+
+#download-form{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+#download-form .input-group{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+
+.input-group mb-3 {
+    height: 40px;
+}
+
+#input-button {
+    width: 55%;
+    margin: 0 auto;
+    top: -37px;
+    text-align: left;
+    z-index: 1;
+    *left: 20px;
+}
+
+
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+#tx-info {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}

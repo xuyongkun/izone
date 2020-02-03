@@ -1,0 +1,4 @@
+#LWP-Cookies-2.0
+Set-Cookie3: BAIDUID="1724339200DC96F1CE30EDF219BB197E:FG=1"; path="/"; domain=".baidu.com"; path_spec; domain_dot; expires="2020-06-29 04:01:17Z"; version=0
+Set-Cookie3: HOSUPPORT=1; path="/"; domain=".passport.baidu.com"; path_spec; expires="2027-09-16 04:01:42Z"; httponly=None; version=0
+Set-Cookie3: UBI="fi_PncwhpxZ%7ETaL9wXDHrrBPLCoZIWWrxCtxDMZD8GmIU5e20%7EHYcNTWgwxx9q3H4Y%7EDS7YbuxRkgaBE0ejT7BU1kybPFuu6CADP2oX7IBfrzOumR7S8IwDdOMhnjTc8IAdBg-d%7E7NNtsPuhh10C52kzS8N"; path="/"; domain=".passport.baidu.com"; path_spec; expires="2027-09-16 04:03:02Z"; httponly=None; version=0
