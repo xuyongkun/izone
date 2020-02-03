@@ -1,5 +1,5 @@
 {% load blog_tags oauth_tags comment_tags %}
-{% load humanize %}
+{% load humanize static%}
 <div class="summary-list">
     {% for article in articles %}
     <div class="media mb-1 mb-sm-2 p-2 p-lg-3">
@@ -9,6 +9,7 @@
             </a>
         </div>
         <div class="media-body">
+            {% if article.is_top %}<img class="float-right top-article-img" src="{% static 'blog/img/TOP.png' %}">{% endif %}
             <div class="text-muted mb-2 f-12">
                 {% get_user_avatar_tag article.author %}
                 <span>{{ article.author }}</span>

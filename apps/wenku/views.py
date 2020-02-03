@@ -24,6 +24,14 @@ def download_details_view(request):
     """
     return render(request, 'wenku/index.html')
 
+def Wenku_view(request):
+    """
+    文库下载主页
+    :param request:
+    :return:
+    """
+    return render(request, 'wenku/index.html')
+
 @login_required
 @require_POST
 def download_document(request):

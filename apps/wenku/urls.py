@@ -11,12 +11,13 @@
 """
 from django.conf.urls import url
 from django.urls import path
-from .views import download_details_view, download_document
+from .views import download_details_view, download_document, Wenku_view
 
 
 app_name = 'wenku'
 
 urlpatterns = [
+    path('', Wenku_view, name='wenku_index'),                       # 文库下载主页
     path('', download_details_view, name='download_detail'),         # 显示用户下载信息
     path('download', download_document, name='download_document'),            # 下载文档
 ]

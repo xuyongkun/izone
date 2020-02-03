@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'blog',  # 博客应用
     'tool',  # 工具
     'comment',  # 评论
+    'wenku',    # 文库下载应用
 
 ]
 
@@ -208,8 +209,8 @@ REST_FRAMEWORK = {
 # 配置数据库
 MYSQL_HOST = os.getenv('IZONE_MYSQL_HOST', '127.0.0.1')
 MYSQL_NAME = os.getenv('IZONE_MYSQL_NAME', 'izone')
-MYSQL_USER = os.getenv('IZONE_MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'python')
+MYSQL_USER = os.getenv('IZONE_MYSQL_USER', 'izone')
+MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'izone')
 MYSQL_PORT = os.getenv('IZONE_MYSQL_PORT', 3306)
 
 DATABASES = {
@@ -248,17 +249,17 @@ if admin_email_user:
 
 # 邮箱配置
 EMAIL_HOST = os.getenv('IZONE_EMAIL_HOST', 'smtp.163.com')
-EMAIL_HOST_USER = os.getenv('IZONE_EMAIL_HOST_USER', 'your-email-address')
-EMAIL_HOST_PASSWORD = os.getenv('IZONE_EMAIL_HOST_PASSWORD', 'your-email-password')  # 这个不是邮箱密码，而是授权码
+EMAIL_HOST_USER = os.getenv('IZONE_EMAIL_HOST_USER', 'xuyongkun22@126.com')
+EMAIL_HOST_PASSWORD = os.getenv('IZONE_EMAIL_HOST_PASSWORD', 'kenny0202')  # 这个不是邮箱密码，而是授权码
 EMAIL_PORT = os.getenv('IZONE_EMAIL_PORT', 465)  # 由于阿里云的25端口打不开，所以必须使用SSL然后改用465端口
 EMAIL_TIMEOUT = 5
 # 是否使用了SSL 或者TLS，为了用465端口，要使用这个
 EMAIL_USE_SSL = os.getenv('IZONE_EMAIL_USE_SSL', 'True').upper() == 'TRUE'
 # 默认发件人，不设置的话django默认使用的webmaster@localhost，所以要设置成自己可用的邮箱
-DEFAULT_FROM_EMAIL = os.getenv('IZONE_DEFAULT_FROM_EMAIL', 'TendCode博客 <your-email-address>')
+DEFAULT_FROM_EMAIL = os.getenv('IZONE_DEFAULT_FROM_EMAIL', 'kenny博客 <xuyongkun22@163.com>')
 
 # 网站默认设置和上下文信息
-SITE_LOGO_NAME = os.getenv('IZONE_LOGO_NAME', 'TendCode')
+SITE_LOGO_NAME = os.getenv('IZONE_LOGO_NAME', 'kenny个人博客')
 SITE_END_TITLE = os.getenv('IZONE_SITE_END_TITLE', 'izone')
 SITE_DESCRIPTION = os.getenv('IZONE_SITE_DESCRIPTION', 'izone 是一个使用 Django+Bootstrap4 搭建的个人博客类型网站')
 SITE_KEYWORDS = os.getenv('IZONE_SITE_KEYWORDS', 'izone,Django博客,个人博客')

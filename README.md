@@ -1,5 +1,10 @@
 一个以 Django 作为框架搭建的个人博客。
 
+## pycharm 启动步骤
+- 1 在Terminal 窗口执行 python manage.py makemigrations , 首先要创建数据库表格
+- 2 然后确认迁移 执行python manage.py migrate
+
+
 博客效果： https://tendcode.com/
 
 ## 功能介绍
