@@ -42,7 +42,6 @@ ALLOWED_HOSTS = ['*']
 # 添加了新的app需要重启服务器
 INSTALLED_APPS = [
     'bootstrap_admin',  # 注册bootstrap后台管理界面,这个必须放在最前面
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',  # 添加人性化过滤器
     'django.contrib.sitemaps',  # 网站地图
-
     'oauth',  # 自定义用户应用
     # allauth需要注册的应用
     'django.contrib.sites',  # 这个是自带的，会创建一个sites表，用来存放域名
@@ -130,7 +128,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'blog.context_processors.settings_info',  # 自定义上下文管理器
             ],
         },

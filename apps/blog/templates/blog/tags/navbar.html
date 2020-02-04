@@ -37,11 +37,21 @@
                 {% url 'blog:about' as about_url %}
                 <a class="nav-link py-md-3 {% if request.path == about_url %}active{% endif %}" href="{{ about_url }}"><i class="fa fa-question-circle mr-1"></i>关于</a>
             </li>
+
+            {% if user.is_superuser %}
+                <li class="nav-item mr-2 ">
+                {% url 'admin:index' as admin_url %}
+                <a class="nav-link py-md-3 {% if request.path == admin_url %}active{% endif %}" href="{{ admin_url }}"><i class="fa fa-cog mr-1"></i>后台管理</a>
+                </li>
+            {% endif %}
+
             <!--文库下载-->
+            {% if user.is_staff %}
             <li class="nav-item mr-2 ">
                 {% url 'wenku:wenku_index' as wenku_url %}
                 <a class="nav-link py-md-3 {% if request.path == wenku_url %}active{% endif %}" href="{{ wenku_url }}"><i class="fa fa-book mr-1"></i>文库下载</a>
             </li>
+            {% endif %}
             <!--搜索框-->
             <form class="nav-item navbar-form mr-2 py-md-2" role="search" method="get" id="searchform" action="{% url 'blog:search_view'%}">
                 <div class="input-group">
@@ -66,10 +76,6 @@
                 <!--用户下拉菜单-->
                 <div class="dropdown-menu dropdown-menu-right mt-0 rounded-0 border-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item pl-3" href="{% url 'oauth:profile' %}"><i class="fa fa-fw fa-user text-info mr-2"></i>个人资料</a>
-                    {% if user.is_staff %}
-                    <a class="dropdown-item pl-3" href="{% url 'admin:index' %}"><i
-                            class="fa fa-fw fa-key text-info mr-2"></i>后台管理</a>
-                    {% endif %}
                     <a class="dropdown-item pl-3" href="{% url 'comment:notification' %}"><i class="fa fa-fw fa-bell text-info mr-2"></i>消息
                         {% if msgnum > 0%}
                         <span class="badge badge-warning ml-3 text-center">{{ msgnum }}</span>
@@ -83,7 +89,7 @@
             <li class="nav-item mr-2">
                 <a class="nav-link py-md-3" href="{% url 'account_login' %}?next={{ request.path }}">登录</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
                 <a class="nav-link py-md-3" href="{% url 'account_signup' %}?next={{ request.path }}">注册</a>
             </li>
             {% endif %}

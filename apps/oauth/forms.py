@@ -5,7 +5,7 @@ from .models import Ouser
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Ouser
-        fields = ['link','avatar']
+        fields = ['link', 'avatar', 'tickets', ]
 
 
 

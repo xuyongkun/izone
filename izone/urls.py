@@ -32,7 +32,7 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('favicon.ico', RedirectView.as_view(url='/static/blog/img/favicon.ico')),
+    path('favicon.ico', RedirectView.as_view(url='/static/blog/img/logo.png')),
     path('adminx/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # allauth
     path('accounts/', include(('oauth.urls', 'oauth'), namespace='oauth')),         # oauth,只展现一个用户登录界面
@@ -46,7 +46,7 @@ urlpatterns = [
 
 if settings.API_FLAG:
     from api.urls import router
-    urlpatterns.append(path('api/v1/', include((router.urls, router.root_view_name),namespace='api')))    # restframework
+    urlpatterns.append(path('api/v1/', include((router.urls, router.root_view_name), namespace='api')))    # restframework
 
 if settings.TOOL_FLAG:
     urlpatterns.append(path('tool/', include(('tool.urls', 'tool'), namespace='tool')))    # tool

@@ -54,9 +54,7 @@
             var et = checkBrowserVersion();
             //浏览器类型赋值到Form中
             document.getElementById('browser_type').value = et;
-
             var iframe = document.getElementById("download-frame");
-
             if (iframe.attachEvent) {
                 alert('1');
                 iframe.attachEvent("onload", function () {
@@ -68,7 +66,6 @@
                     window.open(url);
                 })
             } else {
-                alert('0');
                 iframe.onload = function () {
                     //判断浏览器
                     var ht = $(iframe.contentWindow.document.body).html();

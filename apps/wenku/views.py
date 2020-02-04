@@ -56,12 +56,12 @@ def download_document(request):
             init_url = login_baidu.download_document(session, doc_url)
             # session.get(doc_url, headers=headers, verify=False)
             data = {'msg': 'success', 'url': init_url}
+            # 下载成功后，将下载地址保存
+
             return HttpResponse(json.dumps(data), content_type='text/html;charset=utf-8')
         else:
             data = {'msg': 'not baidu'}
             return HttpResponse(json.dumps(data), content_type='text/html;charset=utf-8')
-
-
 
 
 class IndexView(generic.ListView):
