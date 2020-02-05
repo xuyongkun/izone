@@ -21,7 +21,7 @@ class ArticleListSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     permission_classes = (DjangoModelPermissionsOrAnonReadOnly,)
 
-    def perform_create(self,serializer):
+    def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
 class TagListSet(viewsets.ModelViewSet):

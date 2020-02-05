@@ -40,7 +40,7 @@ def create_user(request):
     :param request:
     :return:
     """
-    user_name = ''
+    user_name = ''                  #订单号
     password = user_name
     ticket = 2000       # 为用户设定默认的下载券数量
     new_user = Ouser(username=user_name, password=password, is_staff=True, avatar='avatar/staff.png', tickets=ticket)

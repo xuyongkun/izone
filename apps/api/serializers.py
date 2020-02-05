@@ -8,7 +8,7 @@ from tool.models import ToolLink, ToolCategory
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ouser
-        fields = ('id', 'username', 'first_name', 'link', 'avatar')
+        fields = ('id', 'username', 'first_name', 'link', 'avatar', 'tickets')
         # fields = '__all__'
         # exclude = ('password','email')
 

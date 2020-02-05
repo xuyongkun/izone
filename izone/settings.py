@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('IZONE_SECRET_KEY', '#!kta!9e0)24d@9#=*=ra$r!0k0+p5@w+a%7
 # 是否开启[在线工具]应用
 TOOL_FLAG = os.getenv('IZONE_TOOL_FLAG', 'True').upper() == 'TRUE'
 # 是否开启[API]应用
-API_FLAG = os.getenv('IZONE_API_FLAG', 'False').upper() == 'TRUE'
+API_FLAG = os.getenv('IZONE_API_FLAG', 'True').upper() == 'TRUE'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('IZONE_DEBUG', 'True').upper() == 'TRUE'
